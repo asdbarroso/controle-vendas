@@ -14,7 +14,7 @@ import com.sistema.controle.servicos.UsuarioServico;
 
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/usuarios")
 public class UsuarioResource {
 
 	@Autowired
