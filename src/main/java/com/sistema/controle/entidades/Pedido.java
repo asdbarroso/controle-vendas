@@ -2,6 +2,8 @@ package com.sistema.controle.entidades;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,9 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sistema.controle.entidades.enums.PedidoStatus;
 
 @Entity
@@ -23,6 +27,7 @@ public class Pedido implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
 	private Instant momento;
 
@@ -32,6 +37,9 @@ public class Pedido implements Serializable {
 	@JoinColumn(name = "cliente_id")
 	private Usuario cliente;
 
+	@OneToMany(mappedBy = "id.pedido")
+	private Set<ItemPedido> itens = new HashSet<>();
+	
 	public Pedido() {
 		super();
 	}
@@ -77,6 +85,10 @@ public class Pedido implements Serializable {
 	public void setCliente(Usuario cliente) {
 		this.cliente = cliente;
 	}
+	
+	public Set<ItemPedido> getItens() {
+		return itens;
+	}
 
 	@Override
 	public int hashCode() {
@@ -102,5 +114,7 @@ public class Pedido implements Serializable {
 			return false;
 		return true;
 	}
+
+
 
 }

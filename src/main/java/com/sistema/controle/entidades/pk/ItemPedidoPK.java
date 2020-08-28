@@ -10,7 +10,7 @@ import com.sistema.controle.entidades.Pedido;
 import com.sistema.controle.entidades.Produto;
 
 @Embeddable
-public class ItemPedidoPK  implements Serializable{
+public class ItemPedidoPK implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
