@@ -102,6 +102,17 @@ public class Pedido implements Serializable {
 		return itens;
 	}
 	
+	public Double getTotal() {
+		Double soma = 0.00;
+		for (ItemPedido x : itens) {
+			soma += x.getSubTotal();
+		}
+		return soma;
+		
+		
+		
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
