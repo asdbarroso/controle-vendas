@@ -36,7 +36,6 @@ public class Usuario implements Serializable{
 	}
 
 	public Usuario(Long id, String nome, String email, String telefone, String senha) {
-		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
@@ -83,7 +82,6 @@ public class Usuario implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	
 
 	public List<Pedido> getPedidos() {
 		return pedidos;
@@ -113,5 +111,4 @@ public class Usuario implements Serializable{
 			return false;
 		return true;
 	}
-	
 }

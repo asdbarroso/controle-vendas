@@ -25,5 +25,9 @@ public class UsuarioServico {
 		
 	}
 	
+	public Usuario inserirUsuario(Usuario usuario) {
+		return usuarioRepositorio.save(usuario);
+	}
+	
 	
 }
