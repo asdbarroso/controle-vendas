@@ -3,6 +3,8 @@ package com.sistema.controle.servicos;
 import java.util.List;
 import java.util.Optional;
 
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -44,9 +46,13 @@ public class UsuarioServico {
 	}
 	
 	public Usuario atualizar(Long id, Usuario usuario) {
+		try {
 		Usuario entidade = usuarioRepositorio.getOne(id);
 		atualizaUsuario(entidade, usuario);
 		return usuarioRepositorio.save(entidade);
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException(id);
+		}
 	}
 
 	private void atualizaUsuario(Usuario entidade, Usuario usuario) {
